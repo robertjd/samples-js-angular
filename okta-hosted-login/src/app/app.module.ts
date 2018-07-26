@@ -20,7 +20,15 @@ import {
   OktaCallbackComponent,
 } from '@okta/okta-angular';
 
-import config from './.samples.config';
+// import config from './.samples.config';
+const config = {
+  oidc: {
+    clientId: 'xxx',
+    issuer: 'https://dev-xxx.oktapreview.com/oauth2/default',
+    redirectUri: 'http://localhost:8080/implicit/callback',
+    scope: 'openid profile email'
+  }
+};
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';

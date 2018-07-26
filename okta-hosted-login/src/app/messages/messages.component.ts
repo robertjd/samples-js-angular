@@ -12,7 +12,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import sampleConfig from '../.samples.config';
 
@@ -37,9 +37,9 @@ export class MessagesComponent implements OnInit {
   async ngOnInit() {
     const accessToken = await this.oktaAuth.getAccessToken();
     this.http.get(sampleConfig.resourceServer.messagesUrl, {
-      headers: {
+      headers: new HttpHeaders({
         Authorization: 'Bearer ' + accessToken,
-      }
+      })
     }).subscribe((data: any) => {
       let index = 1;
       const messages = data.messages.map((message) => {
